@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0ed">
+<title>11/11 ♡ A Little Dinner Date</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+:root {
+  --rose: #c97688;
+  --deep: #9c4e63;
+  --cream: #fffaf0;
+  --ink: #855f6c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Noto Sans TC", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, #f4c7d2 0 7%, transparent 7.5%),
+    radial-gradient(circle at 90% 35%, #f7dcc0 0 8%, transparent 8.5%),
+    radial-gradient(circle at 10% 85%, #e9e6c9 0 8%, transparent 8.5%),
+    linear-gradient(145deg, #ffe9ef, #fff9ec);
+}
+
+.container {
+  width: 100%;
+  max-width: 490px;
+  padding: 34px 23px;
+  text-align: center;
+  background: rgba(255,251,244,.97);
+  border: 2px solid #eecbd0;
+  border-radius: 34px;
+  box-shadow: 0 20px 55px #a1596f2b;
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-family: "DM Serif Display", serif;
+  color: #bb8090;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 12px 0;
+  color: var(--deep);
+  font-size: 36px;
+}
+
+h2 {
+  color: #b25b74;
+  font-size: 22px;
+  line-height: 1.65;
+}
+
+p { line-height: 1.85; }
+
+.subtitle {
+  color: #a47c87;
+  font-size: 14px;
+}
+
+.doll-stage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2px;
+  margin: 20px auto 12px;
+  min-height: 185px;
+}
+
+.doll {
+  width: 30%;
+  max-width: 120px;
+  filter: drop-shadow(0 9px 7px #a9767433);
+  animation: float 3.2s ease-in-out infinite;
+}
+
+.doll.center {
+  width: 36%;
+  max-width: 140px;
+  animation-delay: .45s;
+}
+
+.doll:last-child { animation-delay: .9s; }
+
+@keyframes float {
+  50% { transform: translateY(-8px); }
+}
+
+.decor {
+  font-size: 19px;
+  letter-spacing: 12px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 7px 19px;
+  background: #fff0f0;
+  border: 1px solid #e8c5cf;
+  color: #ba7589;
+  border-radius: 50px;
+  font-size: 12px;
+}
+
+button {
+  font-family: inherit;
+  border: 0;
+  border-radius: 28px;
+  padding: 14px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.yes {
+  display: block;
+  width: 165px;
+  max-width: 100%;
+  min-height: 55px;
+  margin: 13px auto;
+  background: var(--rose);
+  color: white;
+  box-shadow: 0 8px 18px #c9768855;
+}
+
+.no {
+  background: #f7e2e5;
+  color: #a36677;
+  border: 1px solid #e9c9d0;
+}
+
+.message {
+  min-height: 66px;
+  padding: 14px 5px;
+  color: #c25c7d;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.restaurant {
+  margin: 13px 0;
+  padding: 16px;
+  text-align: left;
+  border: 2px solid #edd4d8;
+  border-radius: 21px;
+  background: #fffdf8;
+}
+
+.restaurant.selected {
+  background: #fff0f2;
+  border-color: #ce8196;
+}
+
+.restaurant-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.restaurant strong {
+  display: block;
+  color: var(--deep);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.restaurant small {
+  color: #ad8290;
+  font-size: 12px;
+}
+
+.arrow {
+  color: #bd7288;
+  font-size: 20px;
+}
+
+.menu {
+  padding-top: 14px;
+  display: none;
+}
+
+.restaurant.selected .menu {
+  display: block;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px dashed #ead0d5;
+  font-size: 13px;
+}
+
+.menu-row span:last-child {
+  color: #b75677;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.menu a {
+  display: block;
+  margin-top: 16px;
+  padding: 12px;
+  background: #f4dce2;
+  border-radius: 25px;
+  text-align: center;
+  color: #a5516c;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.confirm {
+  width: 100%;
+  margin-top: 17px;
+  color: white;
+  background: var(--rose);
+}
+
+.confirm:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.final-card {
+  margin: 24px 0;
+  padding: 25px 15px;
+  background: #fff0ef;
+  border: 2px dashed #e5bac4;
+  border-radius: 25px;
+}
+
+.note {
+  color: #a28b91;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+footer {
+  margin-top: 25px;
+  color: #bd889a;
+  font-family: "DM Serif Display", serif;
+  font-size: 13px;
+}
+
+.hidden { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .doll { animation: none; }
+}
+</style>
+</head>
+
+<body>
+<main class="container">
+
+<section id="page1">
+  <span class="pill">a special invitation ♡</span>
+  <div id="dolls1" class="doll-stage"></div>
+  <p class="eyebrow">a little date with you</p>
+  <h1>11/11 晚餐 ♡</h1>
+  <div class="decor">🍓 ♡ 🍒</div>
+
+  <p class="subtitle">有一件小小的事情想問妳……</p>
+  <h2>11/11 可以陪我<br>一起吃晚餐嗎？🥰</h2>
+  <p class="subtitle">
+    跟妳一起吃飯，去哪裡都很開心。
+  </p>
+
+  <div class="message" id="plead"></div>
+
+  <button class="yes" id="yesBtn" onclick="sayYes()">
+    好呀 ❤️
+  </button>
+
+  <button class="no" onclick="sayNo()">
+    不好 🥺
+  </button>
+</section>
+
+<section id="page2" class="hidden">
+  <div id="dolls2" class="doll-stage"></div>
+  <p class="eyebrow">yay! it's a date ♡</p>
+  <h1>耶！妳答應了！</h1>
+  <p class="subtitle">接下來把晚餐交給妳決定 💕</p>
+  <h2>妳想吃哪一家呢？</h2>
+  <p class="subtitle">點餐廳可以查看菜單與價格。</p>
+
+  <div id="restaurantList"></div>
+
+  <button id="confirmBtn" class="confirm"
+    onclick="confirmRestaurant()" disabled>
+    就決定這一家 ❤️
+  </button>
+
+  <p class="note">
+    菜單價格僅供參考，實際以店家公告為準。
+  </p>
+</section>
+
+<section id="page3" class="hidden">
+  <div id="dolls3" class="doll-stage"></div>
+  <p class="eyebrow">our little date ♡</p>
+  <h1>約會成功！💗</h1>
+
+  <div class="final-card">
+    <h2>11 月 11 日</h2>
+    <p>我們一起去吃</p>
+    <h2 id="finalRestaurant"></h2>
+  </div>
+
+  <p class="subtitle">
+    最期待的不是吃什麼，<br>
+    而是那天可以見到妳。♡
+  </p>
+
+  <button class="no" onclick="showPage(2)">
+    重新選餐廳
+  </button>
+</section>
+
+<footer>♡ little moments, big love ♡</footer>
+</main>
+
+<script>
+/* 原創水果小天使 SVG */
+
+function makeDoll(type, id, center=false) {
+  const theme = {
+    strawberry: ["#db6070", "#bc405a"],
+    cherry: ["#d89baa", "#b97187"],
+    bunny: ["#f3e6dd", "#d8bdb4"]
+  };
+
+  const [cap, dark] = theme[type];
+
+  const ears = type === "bunny" ? `
+    <ellipse cx="43" cy="21" rx="13" ry="30"
+      transform="rotate(-12 43 21)"
+      fill="#f4e8df" stroke="#d8bdb4"/>
+    <ellipse cx="77" cy="21" rx="13" ry="30"
+      transform="rotate(12 77 21)"
+      fill="#f4e8df" stroke="#d8bdb4"/>
+    <ellipse cx="43" cy="20" rx="6" ry="22"
+      transform="rotate(-12 43 20)"
+      fill="#f0b7bd"/>
+    <ellipse cx="77" cy="20" rx="6" ry="22"
+      transform="rotate(12 77 20)"
+      fill="#f0b7bd"/>
+  ` : `
+    <path d="M60 13 Q42 -4 32 12 Q46 26 60 18"
+      fill="#7fa779"/>
+    <path d="M60 13 Q77 -4 88 12 Q74 26 60 18"
+      fill="#91b883"/>
+  `;
+
+  const seeds = type === "strawberry" ? `
+    <g fill="#ffe0a8">
+      <ellipse cx="31" cy="43" rx="2" ry="3"/>
+      <ellipse cx="47" cy="31" rx="2" ry="3"/>
+      <ellipse cx="73" cy="31" rx="2" ry="3"/>
+      <ellipse cx="89" cy="43" rx="2" ry="3"/>
+      <ellipse cx="23" cy="59" rx="2" ry="3"/>
+      <ellipse cx="97" cy="59" rx="2" ry="3"/>
+    </g>
+  ` : "";
+
+  return `
+  <svg class="doll ${center ? "center" : ""}"
+    viewBox="0 0 120 165"
+    role="img"
+    aria-label="水果小天使"
+    xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+      <radialGradient id="skin${id}" cx="35%" cy="24%">
+        <stop offset="0%" stop-color="#ffe4c9"/>
+        <stop offset="100%" stop-color="#eebda3"/>
+      </radialGradient>
+
+      <radialGradient id="cap${id}" cx="28%" cy="20%">
+        <stop offset="0%" stop-color="#fff1ee"/>
+        <stop offset="28%" stop-color="${cap}"/>
+        <stop offset="100%" stop-color="${dark}"/>
+      </radialGradient>
+
+      <linearGradient id="wing${id}">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#e6e4e5"/>
+      </linearGradient>
+    </defs>
+
+    ${ears}
+
+    <path d="M45 101 Q10 76 13 113 Q13 132 42 132"
+      fill="url(#wing${id})" stroke="#e5d6d5"/>
+    <path d="M75 101 Q110 76 107 113 Q107 132 78 132"
+      fill="url(#wing${id})" stroke="#e5d6d5"/>
+
+    <ellipse cx="60" cy="124" rx="27" ry="34"
+      fill="url(#skin${id})"/>
+
+    <ellipse cx="31" cy="122" rx="9" ry="21"
+      transform="rotate(20 31 122)" fill="#edb99f"/>
+    <ellipse cx="89" cy="122" rx="9" ry="21"
+      transform="rotate(-20 89 122)" fill="#edb99f"/>
+
+    <ellipse cx="46" cy="151" rx="12" ry="10"
+      fill="#edb99f"/>
+    <ellipse cx="74" cy="151" rx="12" ry="10"
+      fill="#edb99f"/>
+
+    <ellipse cx="60" cy="56" rx="48" ry="49"
+      fill="url(#cap${id})"/>
+
+    ${seeds}
+
+    <ellipse cx="60" cy="73" rx="36" ry="37"
+      fill="url(#skin${id})"/>
+
+    <path d="M27 56 Q39 34 53 42
+      Q60 35 68 42 Q83 34 93 56
+      Q83 49 76 53 Q65 48 58 55
+      Q43 48 27 56"
+      fill="#a97553"/>
+
+    <ellipse cx="47" cy="74" rx="2.7" ry="4.2"
+      fill="#55413b"/>
+    <ellipse cx="73" cy="74" rx="2.7" ry="4.2"
+      fill="#55413b"/>
+
+    <circle cx="46.5" cy="72.5" r=".8" fill="white"/>
+    <circle cx="72.5" cy="72.5" r=".8" fill="white"/>
+
+    <ellipse cx="36" cy="85" rx="10" ry="5"
+      fill="#ed9e9d" opacity=".55"/>
+    <ellipse cx="84" cy="85" rx="10" ry="5"
+      fill="#ed9e9d" opacity=".55"/>
+
+    <ellipse cx="60" cy="84" rx="2.4" ry="2"
+      fill="#d5a18d"/>
+
+    <path d="M56 91 Q60 95 64 91"
+      stroke="#aa6e6b" fill="none"
+      stroke-width="1.8" stroke-linecap="round"/>
+
+    <circle cx="60" cy="129" r="1.7"
+      fill="#d9a68f"/>
+
+    <path d="M55 108
+      C50 102 44 109 55 117
+      C66 109 60 102 55 108"
+      fill="#ef9cab" opacity=".8"/>
+  </svg>`;
+}
+
+function renderDolls() {
+  ["dolls1", "dolls2", "dolls3"].forEach((target, page) => {
+    document.getElementById(target).innerHTML = [
+      makeDoll("cherry", "ch"+page),
+      makeDoll("strawberry", "st"+page, true),
+      makeDoll("bunny", "bu"+page)
+    ].join("");
+  });
+}
+
+/* 餐廳資料 */
+
+const restaurants = [
+  {
+    name: "玖龍冰室香港茶餐廳",
+    type: "🇭🇰 港式茶餐廳",
+    menu: [
+      ["牛肉炒公仔麵", "$228"],
+      ["港式鴛鴦", "$98"],
+      ["凍檸水", "$58"]
+    ],
+    url: "https://www.ubereats.com/tw/store/玖龍冰室港式茶餐廳/zf8H3zsaVdCrs7dx9z8qLg"
+  },
+  {
+    name: "京星港式飲茶",
+    type: "🥟 港式飲茶",
+    menu: [
+      ["套餐 A：2 道菜＋3 道港點", "$980"],
+      ["套餐 B：3 道菜＋4 道港點", "$1,380"],
+      ["雙色蒸燒賣（外送價）", "$155"]
+    ],
+    url: "https://www.citystar.com.tw/newsdetail/京星港式飲茶PART1菜單"
+  },
+  {
+    name: "1976道地香港美食 敦南本店",
+    type: "🍜 港式粥麵",
+    menu: [
+      ["鮮蝦雲吞撈麵", "查看菜單"],
+      ["滑蛋牛肉粥", "查看菜單"],
+      ["鬆化叉燒酥", "查看菜單"]
+    ],
+    url: "https://angelababy0822.com/1976-2/"
+  },
+  {
+    name: "THE SHIN 初心pasta 義大利麵－南京復興店",
+    type: "🍝 義大利料理",
+    menu: [
+      ["肉醬義大利麵 A 套餐（外送價）", "$408"],
+      ["平日商業午餐（非晚餐）", "$299 起"],
+      ["其他義大利麵、披薩", "查看菜單"]
+    ],
+    url: "https://dalang.tw/the-shin-pasta/"
+  },
+  {
+    name: "雙月食品社 濟南店",
+    type: "🍲 台式養生料理",
+    menu: [
+      ["招牌雞湯", "查看菜單"],
+      ["乾麵", "查看菜單"],
+      ["滷味小菜", "查看菜單"]
+    ],
+    url: "https://www.moonmoonfood.com/CISTopic?g=S00012"
+  },
+  {
+    name: "兔Dreams 兔子餐廳",
+    type: "🐰 兔子主題餐廳",
+    menu: [
+      ["菠菜雞肉起司醬筆管麵（參考價）", "$300"],
+      ["黑糖鮮奶（參考價）", "$140"],
+      ["錫蘭紅茶（參考價）", "$100"]
+    ],
+    url: "https://www.fonfood.com/store/931026"
+  }
+];
+
+let noCount = 0;
+let selected = -1;
+
+const messages = [
+  "真的不考慮一下嘛？🥺",
+  "拜託嘛～就陪我去吃一頓飯 💗",
+  "妳不答應，我會有一點點難過耶 🥹",
+  "我真的很期待跟妳一起吃飯！",
+  "好不好嘛～妳選哪間我都陪妳 ❤️",
+  "這個好呀都變那麼大了，妳忍心嗎？",
+  "最後再問一次，好不好嘛 🥺💕"
+];
+
+function showPage(page) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById("page" + i)
+      .classList.toggle("hidden", i !== page);
+  }
+  window.scrollTo(0, 0);
+}
+
+function sayNo() {
+  noCount++;
+
+  document.getElementById("plead").textContent =
+    messages[Math.min(noCount - 1, messages.length - 1)];
+
+  const btn = document.getElementById("yesBtn");
+  const scale = Math.min(1 + noCount * .18, 2.1);
+
+  btn.style.width = Math.min(165 * scale, 350) + "px";
+  btn.style.minHeight = Math.min(55 + noCount * 12, 130) + "px";
+  btn.style.fontSize = Math.min(17 + noCount * 3, 30) + "px";
+}
+
+function sayYes() {
+  renderRestaurants();
+  showPage(2);
+}
+
+function renderRestaurants() {
+  const list = document.getElementById("restaurantList");
+  list.innerHTML = "";
+
+  restaurants.forEach((r, i) => {
+    const card = document.createElement("div");
+    card.className = "restaurant";
+    if (selected === i) card.classList.add("selected");
+
+    const head = document.createElement("div");
+    head.className = "restaurant-head";
+    head.onclick = () => selectRestaurant(i);
+
+    const text = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = r.name;
+
+    const subtitle = document.createElement("small");
+    subtitle.textContent = r.type;
+    text.append(title, subtitle);
+
+    const arrow = document.createElement("span");
+    arrow.className = "arrow";
+    arrow.textContent = selected === i ? "⌃" : "⌄";
+    head.append(text, arrow);
+
+    const menu = document.createElement("div");
+    menu.className = "menu";
+
+    r.menu.forEach(([food, price]) => {
+      const row = document.createElement("div");
+      row.className = "menu-row";
+
+      const name = document.createElement("span");
+      name.textContent = food;
+
+      const cost = document.createElement("span");
+      cost.textContent = price;
+
+      row.append(name, cost);
+      menu.appendChild(row);
+    });
+
+    const link = document.createElement("a");
+    link.href = r.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "📖 查看完整菜單";
+
+    menu.appendChild(link);
+    card.append(head, menu);
+    list.appendChild(card);
+  });
+
+  document.getElementById("confirmBtn").disabled =
+    selected === -1;
+}
+
+function selectRestaurant(index) {
+  selected = selected === index ? -1 : index;
+  renderRestaurants();
+}
+
+function confirmRestaurant() {
+  if (selected === -1) return;
+
+  document.getElementById("finalRestaurant").textContent =
+    restaurants[selected].name;
+
+  showPage(3);
+}
+
+renderDolls();
+</script>
+</body>
+</html>
